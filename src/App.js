@@ -5,11 +5,13 @@ import { useState } from 'react';
 import data from './db/data'
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
 import Detail from './component/detail';
+import axios from 'axios'
 
 
 function App(){
 
   const [shoes, setShoes] = useState(data)
+  const [count, setCount] = useState()
   let navigate = useNavigate()
 
   return (
@@ -37,17 +39,32 @@ function App(){
             <div className="row">
               {shoes.map((a,i)=>{
                 return (
-                  <Card shoes={shoes} i={i}></Card>        
+                  <Card shoes={shoes} i={i} key={i}></Card>        
                 )
             })}
           </div>
+
+          <button onClick={()=>{
+            axios.get('https://codingapple1.github.io/shop/data2.json')
+            .then((res)=>{
+              console.log(res.data)
+              let newArray = [...shoes, ...res.data]
+              setShoes(newArray)
+            })
+            .catch(()=>{
+              console.log('실패했습니다')
+            })
+           }}></button>
+
         </div>
           </>
-        } />
-
+        }> 
+        </Route>
+{/* 상품 상세페이지 */}
       <Route path="/detail/:id" element={<Detail shoes={shoes}/>}> </Route>
+{/* 없는 페이지 */}
       <Route path="*" element={<div>없는페이지</div>}></Route>
-
+{/* about페이지 */}
       <Route path='/about' element={<About/>}>
         <Route path='member' element={<div>멤버</div>}></Route>
         <Route path='location' element={<div>위치</div>}></Route>
