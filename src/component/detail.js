@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Nav } from 'react-bootstrap';
-import App from './../App';
 
 function Detail(props){
 
@@ -63,8 +62,19 @@ function Detail(props){
 }
 
 function TabContent({tap}){
+
+    let [fade, setFade] = useState('')
+    useEffect(()=>{
+        setTimeout(()=>{
+            setFade('end')
+        },100)
+        return ()=>{
+            setFade('')
+        }
+    },[tap])
+
     if( tap == 0){
-        return <div>내용1</div>
+        return <div className={'start ' + fade}>내용1</div>
     }else if( tap == 1){
         return <div>내용2</div>
     }else{

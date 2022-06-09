@@ -4,3 +4,12 @@
   background-size : cover;
   background-position : center;
 }
+
+/* animation */
+.start{
+  transform: scale(0);
+}
+.end{
+  transform: scale(1);
+  transition: all 0.5s;
+}
