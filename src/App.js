@@ -11,6 +11,7 @@ import axios from 'axios'
 
 function App(){
 
+
   const [shoes, setShoes] = useState(data)
   const [count, setCount] = useState()
   let navigate = useNavigate()
@@ -39,7 +40,7 @@ function App(){
           <>
 {/*메인 Bg */}
         <div className ="main-bg"></div>
-        
+
           <div className="container">
             <div className="row">
             {shoes.map((a,i)=>{

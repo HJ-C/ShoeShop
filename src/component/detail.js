@@ -4,6 +4,7 @@ import { Nav } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addItem } from "../store";
 
+
 function Detail(props){
 
     let {id} = useParams()
@@ -13,6 +14,15 @@ function Detail(props){
     let [alert,setAlert] = useState(true)
     let [tap,setTap] = useState(0)
     let dispatch = useDispatch()
+
+
+    // useEffect(()=>{
+    //     let out = localStorage.getItem('watched')
+    //     out = JSON.parse(out)
+    //     out.push(search.id)
+    //     localStorage.setItem('watched', JSON.stringify(out))
+    //   }, [])
+
 
     useEffect(()=>{
         let a = setTimeout(()=>{
