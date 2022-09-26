@@ -1,20 +1,17 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-
+// createSlice는 useState와 용도가 비슷함
 let user = createSlice({
-    name : 'user',
-    initialState : {name : 'kim', age:20},
-    reducers :  {
-        changeName(state){
-            state.name = 'park'
-        },
-        changeAge(state,action){
-            state.age+=action.payload;
-        }
+  name : 'user',  //state 이름
+  initialState: {name : 'kim', age : 20},  // state 초기값 
+  reducers : {
+    countUp(state,action){
+      state.age+=action.payload
     }
+  }
 })
-// cart.js에 changeAge(1) 기입  
-export let {changeName, changeAge} = user.actions
+export let {countUp} = user.actions;
+
 
 let cart = createSlice({
   name : 'cart',
@@ -22,24 +19,19 @@ let cart = createSlice({
     {id : 0, name : 'White and Black', count : 2},
     {id : 2, name : 'Grey Yordan', count : 1}
   ],
-  reducers: {
-      changeCount(state,action){
-          let num = state.findIndex((a)=>{
-              return a.id === action.payload
-          })
-          state[num].count++
-      },
-      addItem(state,action){
-          state.push(action.payload)
-      }
+  reducers : {
+    addCount(state, action){
+      let index = state.findIndex((a)=>{ return a.id == action.payload })
+      state[index].count++
+    }
   }
-})
+}) 
 
-export let {changeCount,addItem} = cart.actions
+export let {addCount} = cart.actions;
 
 export default configureStore({
   reducer: {
-    user: user.reducer,
+    user : user.reducer,
     cart : cart.reducer
   }
-}) 
+})
