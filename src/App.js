@@ -70,8 +70,11 @@ function App(){
       <Route path="/detail/:id" element={<Detail shoes={shoes}/>}> </Route>
 {/* 없는 페이지 */}
       <Route path="*" element={<div>없는페이지</div>}></Route>
-{/* about페이지 */}
+{/* about페이지 nested routes*/}
       <Route path='/about' element={<About/>}>
+        {/* /about/member와 동일 
+            동시에 element가 2개 보여짐
+        */}
         <Route path='member' element={<div>멤버</div>}></Route>
         <Route path='location' element={<div>위치</div>}></Route>
       </Route>
@@ -83,6 +86,8 @@ function App(){
     </>
   )
 } 
+// nested routes
+// 1. 여러 유사한 페이지를 만들때 사용
 
 function Card(props){
   return (
@@ -100,6 +105,7 @@ function About(){
   return (
     <div>
       <h4>About Page</h4>
+      {/* nested routes에 안에 있는 것을 보여주기 */}
       <Outlet></Outlet>
     </div>
 
